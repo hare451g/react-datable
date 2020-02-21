@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 
-import Table from '../Table';
-import tableSchema from '../../constants/tableSchema';
 import extractDeepValues from '../../helpers/extractDeepValues';
 import useRandomUser from '../../hooks/useRandomUser';
+
+import Table from '../Table';
+import tableSchema from './constants';
 
 function RandomUserTable() {
   const [{ isFetching, error, data }, { fetchRandomUser }] = useRandomUser();
