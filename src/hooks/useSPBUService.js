@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { BASE_RANDOM_USER_API } from '../constants/services';
+import { BASE_SPBU_API } from '../constants/services';
 
 function useRandomUser() {
   const [isFetching, setFetching] = useState(false);
@@ -13,13 +13,13 @@ function useRandomUser() {
       setFetching(true);
 
       const config = {
-        params: { page: targetPage, results: 10 }
+        params: {}
       };
 
-      const response = await axios.get(BASE_RANDOM_USER_API, config);
+      const response = await axios.get(BASE_SPBU_API, config);
 
-      if (response.data && response.data.results) {
-        setData(response.data.results);
+      if (response.data) {
+        setData(response.data);
       } else {
         throw new Error('Server returned with empty result');
       }
