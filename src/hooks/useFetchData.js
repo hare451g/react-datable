@@ -36,7 +36,6 @@ function useFetchData({ url = '' }) {
       setError(null);
       setFetching(false);
     } catch (error) {
-      console.log('error', error);
       if (error.response) {
         setError(error.response);
       } else if (error.request) {
