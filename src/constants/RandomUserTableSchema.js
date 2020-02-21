@@ -4,8 +4,14 @@ const RandomUserTableSchema = {
   tableName: 'Random User',
   fetchURL: BASE_RANDOM_USER_API,
   responseFieldArray: ['data', 'results'],
-  initialRequestParams: { results: 10 },
+  initialRequestParams: { results: 10, seed: 'jakarta' },
   columns: [
+    {
+      label: 'Photo',
+      field: ['picture', 'thumbnail'],
+      type: 'Image',
+      defaultValue: '-'
+    },
     {
       label: 'First Name',
       field: ['name', 'first'],
