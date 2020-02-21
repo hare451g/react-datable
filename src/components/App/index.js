@@ -1,11 +1,17 @@
 import React from 'react';
-import RandomUserTable from '../RandomUserTable';
+
+// constants
+import SPBUTableSchema from '../../constants/SPBUTableSchema';
+import RandomUserTableSchema from '../../constants/RandomUserTableSchema';
+
+// components
+import Datatable from '../Datatable';
 
 function App() {
   return (
     <div>
-      <h2>Random User Table</h2>
-      <RandomUserTable />
+      <Datatable {...SPBUTableSchema} />
+      <Datatable {...RandomUserTableSchema} />
     </div>
   );
 }

@@ -1,32 +1,42 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { BASE_SPBU_API } from '../constants/services';
+import extractDeepValues from '../helpers/extractDeepValues';
 
-function useRandomUser() {
+function useFetchData({ url = '' }) {
   const [isFetching, setFetching] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
 
-  const fetchRandomUser = async (targetPage = 1) => {
+  const fetchData = async (
+    targetPage = 1,
+    responseFieldArray = ['data'],
+    initialRequestParams = {}
+  ) => {
     try {
       setError(null);
       setFetching(true);
 
       const config = {
-        params: {}
+        params: { ...initialRequestParams, page: targetPage }
       };
 
-      const response = await axios.get(BASE_SPBU_API, config);
+      const response = await axios.get(url, config);
 
       if (response.data) {
-        setData(response.data);
+        const extractedData = extractDeepValues({
+          fieldArray: responseFieldArray,
+          object: response,
+          defaultValue: '-'
+        });
+
+        setData(extractedData);
       } else {
         throw new Error('Server returned with empty result');
       }
-
       setError(null);
       setFetching(false);
     } catch (error) {
+      console.log('error', error);
       if (error.response) {
         setError(error.response);
       } else if (error.request) {
@@ -45,9 +55,9 @@ function useRandomUser() {
       data
     },
     {
-      fetchRandomUser
+      fetchData
     }
   ];
 }
 
-export default useRandomUser;
+export default useFetchData;
