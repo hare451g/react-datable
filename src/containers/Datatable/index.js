@@ -5,7 +5,7 @@ import dataTypeSelectors from '../../helpers/dataTypeSelectors';
 // hooks
 import useFetchData from '../../hooks/useFetchData';
 // components
-import Table from '../Table';
+import Table from '../../components/Table';
 
 function Datatable({
   tableName,

@@ -4,7 +4,7 @@ import React from 'react';
 import SPBUTableSchema from '../../constants/SPBUTableSchema';
 import RandomUserTableSchema from '../../constants/RandomUserTableSchema';
 
-// components
+// containers
 import Datatable from '../Datatable';
 
 function App() {
