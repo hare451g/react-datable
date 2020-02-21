@@ -6,6 +6,12 @@ const SPBUTableSchema = {
   responseFieldArray: ['data'],
   columns: [
     {
+      label: 'Photo',
+      field: ['spbuImage'],
+      type: 'Image',
+      defaultValue: '-'
+    },
+    {
       label: 'Code',
       field: ['spbuCode'],
       type: String,
@@ -20,12 +26,6 @@ const SPBUTableSchema = {
     {
       label: 'Region',
       field: ['region'],
-      type: String,
-      defaultValue: '-'
-    },
-    {
-      label: 'Image',
-      field: ['spbuImage'],
       type: String,
       defaultValue: '-'
     },

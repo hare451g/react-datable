@@ -1,4 +1,5 @@
 import React from 'react';
+import TableCell from '../TableCell';
 
 function TableBody({ values = [] }) {
   return (
@@ -6,7 +7,11 @@ function TableBody({ values = [] }) {
       {values.map(rows => (
         <tr>
           {rows.map(cell => (
-            <td>{cell}</td>
+            <TableCell
+              type={cell.type}
+              value={cell.value}
+              defaultValue={cell.defaultValue}
+            />
           ))}
         </tr>
       ))}

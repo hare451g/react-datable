@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 // helpers
 import extractDeepValues from '../../helpers/extractDeepValues';
-import dataTypeSelectors from '../../helpers/dataTypeSelectors';
 // hooks
 import useFetchData from '../../hooks/useFetchData';
 // components
@@ -41,11 +40,11 @@ function Datatable({
           defaultValue: column.defaultValue
         });
 
-        return dataTypeSelectors({
+        return {
           type: column.type,
           value: extractedValue,
           defaultValue: column.defaultValue
-        });
+        };
       })
     );
 
