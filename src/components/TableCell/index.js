@@ -12,7 +12,7 @@ function TableCell({ type, value, defaultValue }) {
     case 'Image':
       return (
         <td>
-          <img src={value} alt={value} />
+          <img src={value} alt={value} width={50} />
         </td>
       );
     default:

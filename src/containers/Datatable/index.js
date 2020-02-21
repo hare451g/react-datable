@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // helpers
 import extractDeepValues from '../../helpers/extractDeepValues';
 // hooks
 import useFetchData from '../../hooks/useFetchData';
 // components
 import Table from '../../components/Table';
+import Pagination from '../../components/Pagination';
 
 function Datatable({
   tableName,
@@ -13,13 +14,18 @@ function Datatable({
   columns,
   initialRequestParams
 }) {
-  const [{ isFetching, error, data = [] }, { fetchData }] = useFetchData({
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [
+    { isFetching, error, data = [], totalPage },
+    { fetchData }
+  ] = useFetchData({
     url: fetchURL
   });
 
   useEffect(() => {
-    fetchData(1, responseFieldArray, initialRequestParams);
-  }, []);
+    fetchData(currentPage, responseFieldArray, initialRequestParams);
+  }, [currentPage]);
 
   if (isFetching) {
     return <div>Loading . . . </div>;
@@ -49,10 +55,17 @@ function Datatable({
     );
 
     return (
-      <div>
+      <>
         <h2>{tableName}</h2>
         <Table headers={headers} values={values} />
-      </div>
+        <Pagination
+          totalPage={totalPage}
+          currentPage={currentPage}
+          onTargetPageClick={value => {
+            setCurrentPage(value);
+          }}
+        />
+      </>
     );
   }
 

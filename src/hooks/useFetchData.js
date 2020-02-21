@@ -6,6 +6,7 @@ function useFetchData({ url = '' }) {
   const [isFetching, setFetching] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
+  const [totalPage, setTotalPage] = useState(0);
 
   const fetchData = async (
     targetPage = 1,
@@ -29,6 +30,10 @@ function useFetchData({ url = '' }) {
           defaultValue: '-'
         });
 
+        if (response.data.info) {
+          setTotalPage(response.data.info.pages || 0);
+        }
+
         setData(extractedData);
       } else {
         throw new Error('Server returned with empty result');
@@ -51,7 +56,8 @@ function useFetchData({ url = '' }) {
     {
       isFetching,
       error,
-      data
+      data,
+      totalPage
     },
     {
       fetchData
